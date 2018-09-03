@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<environment>
+    <URL>https://members.ivy.co/</URL>
+    <Username>oshik@houzz.com</Username>
+    <Password>123123123</Password>
+    <WrongPassword>wrongpassword</WrongPassword>
+    <WaitTime>10</WaitTime>
+    <ChromeDriverPath>/Users/oshikzigler/Documents/Automation/Selenium/Drivers/Chrome/chromedriver</ChromeDriverPath>
+
+
+    <!-- Report - Logger -->
+    <TimeStampTemplate>yyyy-MM-dd_HH-mm-ss</TimeStampTemplate>
+    <LogFileName>ExecutionLog.txt</LogFileName>
+    <ReportFilePath>/Users/oshikzigler/Documents/Automation/Selenium/Extent_Reports/IvyTestReports/IvyTestReport.html</ReportFilePath>
+
+    <!-- Strings -->
+    <SignInValidation>You need to sign in or sign up before continuing.</SignInValidation>
+    <EmailPasswordValidation>Invalid Email or password.</EmailPasswordValidation>
+    <TermsOfUseUrl>https://www.ivy.co/tos/</TermsOfUseUrl>
+    <PrivacyPolicyUrl>https://www.ivy.co/privacy-policy/</PrivacyPolicyUrl>
+</environment>

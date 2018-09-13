@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <environment>
-    <URL>https://members.ivy.co/</URL>
+    <MainScreenURL>https://www.ivy.co/</MainScreenURL>
+    <MembersScreenURL>https://members.ivy.co/</MembersScreenURL>
     <Username>oshik@houzz.com</Username>
     <Password>123123123</Password>
     <WrongPassword>wrongpassword</WrongPassword>

@@ -5,12 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class WelcomeScreen {
+public class MembersScreen {
 
     WebDriver driver;
 
     //Constructor
-    public WelcomeScreen(WebDriver localDriver) {
+    public MembersScreen(WebDriver localDriver) {
         this.driver = localDriver;
     }
 
@@ -39,8 +39,12 @@ public class WelcomeScreen {
     WebElement PrivacyPolicy;
 
     @FindBy(how = How.CLASS_NAME, using = "text-danger")
-
     public static WebElement SignInValidationErrorMessage;
+
+    @FindBy(how = How.ID, using = "designer-avatar")
+    public static WebElement AvatarButton;
+
+
 
 
     public void TermsOfUseAction() {
@@ -66,13 +70,17 @@ public class WelcomeScreen {
         LoginButton.click();
     }
 
-    public void SignInAction(String email , String password) {
+    public void LogInAction(String email , String password) {
         UserEmail.sendKeys(email);
         UserPassword.sendKeys(password);
         LoginButton.click();
     }
 
-    public void RememberMeAction(){
+    public void SignUpAction(){
+        JoinButton.click();
+    }
+
+    public void RememberMeAction() {
         RememberMe.click();
     }
 

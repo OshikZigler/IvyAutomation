@@ -1,15 +1,10 @@
 package Tests;
 
-import Screens.WelcomeScreen;
+import Screens.MainScreen;
+import Screens.MembersScreen;
 import Utilities.Utils;
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
+import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -27,23 +22,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-public class WelcomeScreenTest extends Utils {
+@FixMethodOrder(MethodSorters.JVM)
+
+public class MembersScreenTest extends Utils {
 
     public static WebDriver driver;
     WebDriverWait wait = new WebDriverWait(driver, 10);
 
-    private static WelcomeScreen welcomeScreen;
+    private static MainScreen mainScreen;
+    private static MembersScreen membersScreen;
 
     @BeforeClass
     public static void openBrowser() throws ParserConfigurationException, SAXException, IOException {
         System.setProperty("webdriver.chrome.driver", getData("ChromeDriverPath"));
         driver = new ChromeDriver();
         driver.manage().window().fullscreen();
-        driver.get(getData("URL"));
+        driver.get(getData("MembersScreenURL"));
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         //Initializing Webelements
-        welcomeScreen = PageFactory.initElements(driver, WelcomeScreen.class);
+        membersScreen = PageFactory.initElements(driver, MembersScreen.class);
+        mainScreen = PageFactory.initElements(driver , MainScreen.class);
 
     }
 
@@ -61,47 +60,27 @@ public class WelcomeScreenTest extends Utils {
     @Test
     public void validationsTest() throws IOException, SAXException, ParserConfigurationException {
 
-        ExtentHtmlReporter reporter = new ExtentHtmlReporter(getData("ReportFilePath"));
-        ExtentReports extent = new ExtentReports();
-        extent.attachReporter(reporter);
-
-        ExtentTest test = extent.createTest("Login validation", "Testing empty or wrong credentials");
-
-        //Clicking on login buton without inserting email or password
-        welcomeScreen.SignInValidationAction();
-        test.log(Status.INFO, "Clicking on 'Login' without inserting username/password");
-        WelcomeScreen.SignInValidationErrorMessage.isDisplayed();
-        test.log(Status.INFO, "Error message is displayed");
-        Assert.assertEquals("Validation error message is wrong", getData("SignInValidation"), WelcomeScreen.SignInValidationErrorMessage.getText());
-        test.log(Status.INFO, "Error message syntax is correct");
-        test.pass("PASSED");
+        //Clicking on Login button without inserting email or password
+        membersScreen.SignInValidationAction();
+        MembersScreen.SignInValidationErrorMessage.isDisplayed();
+        Assert.assertEquals("Validation error message is wrong", getData("SignInValidation"), MembersScreen.SignInValidationErrorMessage.getText());
 
         //Login with email and without password
-        welcomeScreen.SignInValidationAction(getData("Username"));
-        test.log(Status.INFO, "Clicking on 'Login' while inserting username without password");
-        WelcomeScreen.SignInValidationErrorMessage.isDisplayed();
-        test.log(Status.INFO, "Error message is displayed");
-        Assert.assertEquals("Validation error message is wrong", getData("EmailPasswordValidation"), WelcomeScreen.SignInValidationErrorMessage.getText());
-        test.log(Status.INFO, "Error message syntax is correct");
-        test.pass("PASSED");
+        membersScreen.SignInValidationAction(getData("Username"));
+        MembersScreen.SignInValidationErrorMessage.isDisplayed();
+        Assert.assertEquals("Validation error message is wrong", getData("EmailPasswordValidation"), MembersScreen.SignInValidationErrorMessage.getText());
 
         //Login with email and with wrong password
-        welcomeScreen.SignInValidationAction(getData("Username"), getData("WrongPassword"));
-        test.log(Status.INFO, "Clicking on 'Login' while inserting username and wrong password");
-        WelcomeScreen.SignInValidationErrorMessage.isDisplayed();
-        test.log(Status.INFO, "Error message is displayed");
-        Assert.assertEquals("Validation error message is wrong", getData("EmailPasswordValidation"), WelcomeScreen.SignInValidationErrorMessage.getText());
-        test.log(Status.INFO, "Error message syntax is correct");
-        test.pass("PASSED");
-
-        //extent.flush();
+        membersScreen.SignInValidationAction(getData("Username"), getData("WrongPassword"));
+        MembersScreen.SignInValidationErrorMessage.isDisplayed();
+        Assert.assertEquals("Validation error message is wrong", getData("EmailPasswordValidation"), MembersScreen.SignInValidationErrorMessage.getText());
     }
 
     @Test
-    public void login() throws IOException, SAXException, ParserConfigurationException {
+    public void linksTest() throws IOException, SAXException, ParserConfigurationException {
 
         //Navigate to terms of use screen
-        welcomeScreen.TermsOfUseAction();
+        membersScreen.TermsOfUseAction();
 
         ArrayList<String> firstNewTab = new ArrayList<String>(driver.getWindowHandles());
         //Switch to new tab
@@ -114,10 +93,10 @@ public class WelcomeScreenTest extends Utils {
         //Close new tab
         driver.close();
 
-
+        //Switch to original tab
         driver.switchTo().window(firstNewTab.get(0));
         //Navigate to privacy policy screen
-        welcomeScreen.PrivacyPolicyAction();
+        membersScreen.PrivacyPolicyAction();
 
         ArrayList<String> secondNewTab = new ArrayList<String>(driver.getWindowHandles());
         //Switch to new tab
@@ -131,10 +110,18 @@ public class WelcomeScreenTest extends Utils {
         //Close new tab
         driver.close();
 
+        //Switch to original tab
         driver.switchTo().window(secondNewTab.get(0));
-        welcomeScreen.SignInAction(getData("Username"), getData("Password"));
+        //membersScreen.LogInAction(getData("Username"), getData("Password"));
 
     }
+
+    @Test
+    public void loginInTest() throws IOException, SAXException, ParserConfigurationException {
+        membersScreen.LogInAction(getData("Username") , getData("Password"));
+        Assert.assertTrue("User is not signed in" , MembersScreen.AvatarButton.isDisplayed());
+    }
+
 
 
     @AfterClass

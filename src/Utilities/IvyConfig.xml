@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <environment>
-    <MainScreenURL>https://www.ivy.co/</MainScreenURL>
-    <MembersScreenURL>https://members.ivy.co/</MembersScreenURL>
-    <Username>oshik@houzz.com</Username>
-    <Password>123123123</Password>
-    <WrongPassword>wrongpassword</WrongPassword>
     <WaitTime>10</WaitTime>
     <ChromeDriverPath>/Users/oshikzigler/Documents/Automation/Selenium/Drivers/Chrome/chromedriver</ChromeDriverPath>
 
@@ -12,11 +7,23 @@
     <!-- Report - Logger -->
     <TimeStampTemplate>yyyy-MM-dd_HH-mm-ss</TimeStampTemplate>
     <LogFileName>ExecutionLog.txt</LogFileName>
-    <ReportFilePath>/Users/oshikzigler/Documents/Automation/Selenium/Extent_Reports/IvyTestReports/IvyTestReport.html</ReportFilePath>
+    <ReportFilePath>/Users/oshikzigler/Documents/Automation/Ivy_Test_Plan/</ReportFilePath>
 
-    <!-- Strings -->
+    <!-- Main Screen -->
+    <MainScreenURL>https://www.ivy.co/</MainScreenURL>
+    <SignUpValidation>**Ivy requires a valid email to get started**</SignUpValidation>
+    <SignUpUserName>Test User</SignUpUserName>
+    <SignUpEmail>TestEmail@email.com</SignUpEmail>
+    <SignUpPhoneNumber>21555555</SignUpPhoneNumber>
+
+    <!-- Member Screen -->
+    <MembersScreenURL>https://members.ivy.co/</MembersScreenURL>
     <SignInValidation>You need to sign in or sign up before continuing.</SignInValidation>
     <EmailPasswordValidation>Invalid Email or password.</EmailPasswordValidation>
     <TermsOfUseUrl>https://www.ivy.co/tos/</TermsOfUseUrl>
     <PrivacyPolicyUrl>https://www.ivy.co/privacy-policy/</PrivacyPolicyUrl>
+    <LoginUsername>oshik@houzz.com</LoginUsername>
+    <LoginPassword>123123123</LoginPassword>
+    <WrongPassword>wrongpassword</WrongPassword>
+
 </environment>

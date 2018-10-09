@@ -1,13 +1,14 @@
 package Screens;
 
+import Utilities.Base;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class MainScreen {
+public class MainScreen extends Base {
 
-    WebDriver driver;
+    public WebDriver driver;
 
     //Constructor
     public MainScreen(WebDriver localDriver){
@@ -18,7 +19,7 @@ public class MainScreen {
     WebElement LoginButton;
 
     @FindBy(how = How.ID, using = "fullname-43")
-    WebElement FullName;
+    WebElement UserFullName;
 
     @FindBy(how = How.ID, using = "email-974")
     WebElement UserEmail;
@@ -29,9 +30,39 @@ public class MainScreen {
     @FindBy(how = How.ID, using = "ivysubmit-button")
     WebElement SubmitButton;
 
+    @FindBy(how = How.ID, using = "professionalyes")
+    WebElement IsProfessional;
+
+    @FindBy(how = How.ID, using = "professionalno")
+    WebElement IsNotProfessional;
+
+    @FindBy(how = How.XPATH, using = "//a[contains(text(),'Terms of Use')]")
+    WebElement TermsOfUse;
+
+
+    @FindBy(how = How.XPATH, using = "//div[@class='phone-not-valid email-not-valid']")
+    public static WebElement SignUpValidationErrorMessage;
+
 
     public void loginAction(){
         LoginButton.click();
     }
+
+    public void SignUpValidationAction(){
+        SubmitButton.click();
+    }
+
+    public void SignUpValidationAction(String fullName) {
+        UserFullName.sendKeys(fullName);
+        SubmitButton.click();
+    }
+
+    public void SignUpValidationAction(String fullName , String phoneNumber) {
+        UserFullName.sendKeys(fullName);
+        UserPhoneNumber.sendKeys(phoneNumber);
+        SubmitButton.click();
+    }
+
+
 
 }

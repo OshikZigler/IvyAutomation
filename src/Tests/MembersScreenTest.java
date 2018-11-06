@@ -19,7 +19,7 @@ public class MembersScreenTest extends Base {
     @BeforeClass
     public static void navigateToTargetURL() throws ParserConfigurationException, SAXException, IOException {
 
-        //browserAdjusments();
+        browserAdjusments();
         driver.get(getData("MembersScreenURL"));
 
         //Initializing Webelements

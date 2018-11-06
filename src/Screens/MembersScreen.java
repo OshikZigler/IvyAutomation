@@ -15,7 +15,6 @@ public class MembersScreen extends Base {
         this.driver = localDriver;
     }
 
-    //Elements
     @FindBy(how = How.ID, using = "user_email")
     WebElement UserEmail;
 
@@ -47,7 +46,8 @@ public class MembersScreen extends Base {
     public static WebElement AvatarButton;
 
 
-    //Methods
+
+
     public void TermsOfUseAction() {
         TermsOfUse.click();
     }
@@ -65,19 +65,19 @@ public class MembersScreen extends Base {
         LoginButton.click();
     }
 
-    public void SignInValidationAction(String email, String wrongPassword) {
+    public void SignInValidationAction(String email , String wrongPassword) {
         UserEmail.sendKeys(email);
         UserPassword.sendKeys(wrongPassword);
         LoginButton.click();
     }
 
-    public void LogInAction(String email, String password) {
+    public void LogInAction(String email , String password) {
         UserEmail.sendKeys(email);
         UserPassword.sendKeys(password);
         LoginButton.click();
     }
 
-    public void SignUpAction() {
+    public void SignUpAction(){
         JoinButton.click();
     }
 
@@ -85,10 +85,11 @@ public class MembersScreen extends Base {
         RememberMe.click();
     }
 
-    public void ForgotPasswordAction(String email) {
+    public void ForgotPasswordAction(String email){
         ForgotPassword.click();
         UserEmail.sendKeys(email);
     }
+
 
 
 }

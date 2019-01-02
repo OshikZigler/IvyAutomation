@@ -19,15 +19,12 @@ import java.util.concurrent.TimeUnit;
 public class Base {
 
     public static WebDriver driver;
-
     public static MembersScreen membersScreen;
     public static MainScreen mainScreen;
     public static CommonMethods commonMethods = new CommonMethods();
 
 
-
-
-    public static void browserAdjusments() throws IOException, SAXException, ParserConfigurationException {
+    public static void browserSetUp() throws IOException, SAXException, ParserConfigurationException {
         System.setProperty("webdriver.chrome.driver", getData("ChromeDriverPath"));
         driver = new ChromeDriver();
         driver.manage().window().fullscreen();
@@ -44,7 +41,7 @@ public class Base {
         return doc.getElementsByTagName(nodeName).item(0).getTextContent();
     }
 
-    public static void Reports () throws IOException, SAXException, ParserConfigurationException {
+    public static void Reports() throws IOException, SAXException, ParserConfigurationException {
         ExtentHtmlReporter extentHtmlReporter = new ExtentHtmlReporter(getData("ReportFilePath"));
         ExtentReports extentReports = new ExtentReports();
         extentReports.attachReporter(extentHtmlReporter);
@@ -52,5 +49,5 @@ public class Base {
 
     }
 
-    }
+}
 

@@ -11,7 +11,7 @@ public class MainScreen extends Base {
     public WebDriver driver;
 
     //Constructor
-    public MainScreen(WebDriver localDriver){
+    public MainScreen(WebDriver localDriver) {
         this.driver = localDriver;
     }
 
@@ -44,11 +44,11 @@ public class MainScreen extends Base {
     public static WebElement SignUpValidationErrorMessage;
 
 
-    public void loginAction(){
+    public void loginAction() {
         LoginButton.click();
     }
 
-    public void SignUpValidationAction(){
+    public void SignUpValidationAction() {
         SubmitButton.click();
     }
 
@@ -57,12 +57,11 @@ public class MainScreen extends Base {
         SubmitButton.click();
     }
 
-    public void SignUpValidationAction(String fullName , String phoneNumber) {
+    public void SignUpValidationAction(String fullName, String phoneNumber) {
         UserFullName.sendKeys(fullName);
         UserPhoneNumber.sendKeys(phoneNumber);
         SubmitButton.click();
     }
-
 
 
 }

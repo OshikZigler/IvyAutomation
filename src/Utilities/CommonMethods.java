@@ -15,7 +15,6 @@ public class CommonMethods extends Base {
         } catch (Exception e) {
             fail("Element doesn't exist," + e.getMessage());
         }
-
     }
 
     public void verifyElementContent(WebElement element, String expectedValue) {
